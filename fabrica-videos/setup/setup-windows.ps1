@@ -115,15 +115,18 @@ if (Test-Path $capcutDrafts) { Add-Result 'CapCut drafts folder' 'OK' $capcutDra
 else { Add-Result 'CapCut drafts folder' 'NOT FOUND' 'open CapCut once and create a project, then re-run' }
 
 # --- jsonschema (needed by the validator) ------------------------------------------------
+$hasSchema = $false
 if ($py) {
-  $hasSchema = $false
   try { Invoke-Python $py @('-c', 'import jsonschema') *> $null; if ($LASTEXITCODE -eq 0) { $hasSchema = $true } } catch { }
   if ($hasSchema) { Add-Result 'Python: jsonschema' 'OK' 'installed' }
   else {
     Add-Result 'Python: jsonschema' 'MISSING' 'needed by timeline\validate_plan.py'
     if ($Install) {
       $answer = Read-Host "  Install jsonschema with pip (--user)? [y/N]"
-      if ($answer -match '^(y|s)') { Invoke-Python $py @('-m', 'pip', 'install', '--user', 'jsonschema') }
+      if ($answer -match '^(y|s)') {
+        Invoke-Python $py @('-m', 'pip', 'install', '--user', 'jsonschema')
+        if ($LASTEXITCODE -eq 0) { $hasSchema = $true }
+      }
     }
   }
 }
@@ -138,6 +141,15 @@ if ($installedSomething) {
 }
 
 if (-not $py) { Write-Host "Python is missing; skipping probe and tests." -ForegroundColor Yellow; exit 1 }
+
+$missingForTests = @()
+if (-not $hasSchema) { $missingForTests += 'Python package jsonschema' }
+if (-not ((Test-Command 'ffmpeg') -and (Test-Command 'ffprobe'))) { $missingForTests += 'FFmpeg/FFprobe' }
+if ($missingForTests.Count -gt 0) {
+  Write-Host "Not running the tests because these are missing: $($missingForTests -join ', ')." -ForegroundColor Yellow
+  Write-Host "Run this script again with -Install (or install them by hand), then re-run it." -ForegroundColor Yellow
+  exit 1
+}
 
 Write-Host "Tool probe (workflow\probe_tools.py):" -ForegroundColor Cyan
 Invoke-Python $py @((Join-Path $root 'workflow\probe_tools.py'))

@@ -146,9 +146,12 @@ def run_validation(plan_path: Path, schema_path: Path = DEFAULT_SCHEMA,
     except (OSError, json.JSONDecodeError) as exc:
         schema_check.errors.append(f"cannot read plan: {exc}")
     schema_ok = False
+    missing_dependency = False
     if plan is not None:
         if jsonschema is None:
-            schema_check.skipped = "python package 'jsonschema' is not installed"
+            schema_check.skipped = ("python package 'jsonschema' is not installed "
+                                    "(install it with: py -3 -m pip install --user jsonschema)")
+            missing_dependency = True
         else:
             schema = json.loads(schema_path.read_text(encoding="utf-8"))
             validator = jsonschema.Draft202012Validator(schema)
@@ -173,8 +176,12 @@ def run_validation(plan_path: Path, schema_path: Path = DEFAULT_SCHEMA,
         ("media_probe", "FFprobe durations/streams fit the planned source ranges"),
     ]
     if not schema_ok:
-        reason = ("plan unreadable" if plan is None else
-                  "schema validation did not pass; structural checks cannot be trusted")
+        if plan is None:
+            reason = "plan unreadable"
+        elif missing_dependency:
+            reason = "python package 'jsonschema' is not installed, so the plan could not be validated"
+        else:
+            reason = "schema validation did not pass; structural checks cannot be trusted"
         for name, description in later:
             check = new(name, description)
             check.skipped = reason
