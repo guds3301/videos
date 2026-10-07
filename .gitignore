@@ -1,0 +1,12 @@
+# Arquivos pesados de vídeo/áudio ficam fora do Git
+*.mp4
+*.mov
+*.mkv
+*.wav
+*.mp3
+*.prproj
+*.draft_content.json
+
+# Python
+__pycache__/
+*.pyc

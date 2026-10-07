@@ -1,0 +1,211 @@
+{
+  "plan_version": "2.0",
+  "episode": {
+    "id": "episode-slug",
+    "title": "Working title",
+    "language": "en",
+    "accent": null,
+    "fps_num": 24,
+    "fps_den": 1,
+    "width": 1920,
+    "height": 1080,
+    "target_duration_frames": 28800,
+    "runtime_tolerance_frames": 24,
+    "style_guide": "../../style/STYLE_GUIDE.md",
+    "status": "draft"
+  },
+  "global_style": {
+    "name": "Cold Steel / Warm Core",
+    "lut_path": "../../../industrial-cold-warm-core.cube",
+    "lut_target": "Rec.709/sRGB; transform Log before applying",
+    "lut_strength": 1.0,
+    "fonts": {
+      "thumbnail": "Cormorant Garamond Semibold",
+      "labels_and_captions": "Inter"
+    },
+    "palette": {
+      "black": "#07090C",
+      "graphite": "#171B20",
+      "steel": "#AAB4BC",
+      "white": "#EEF1F3",
+      "amber": "#F2A45A",
+      "red": "#E83B32"
+    },
+    "music_direction": "Restrained atmospheric music, ducked under narration"
+  },
+  "tracks": [
+    { "track_id": "V1", "track_type": "video", "role": "picture", "layer_order": 1 },
+    { "track_id": "V2", "track_type": "video", "role": "graphic", "layer_order": 2 },
+    { "track_id": "T1", "track_type": "text", "role": "text", "layer_order": 3 },
+    { "track_id": "A1", "track_type": "audio", "role": "narration", "layer_order": 1, "default_gain_db": 0 },
+    {
+      "track_id": "A2",
+      "track_type": "audio",
+      "role": "music",
+      "layer_order": 2,
+      "default_gain_db": -18,
+      "ducking": {
+        "enabled": true,
+        "duck_under_track_ids": ["A1"],
+        "attenuation_db": -10,
+        "attack_ms": 80,
+        "release_ms": 500
+      }
+    },
+    { "track_id": "A3", "track_type": "audio", "role": "ambience", "layer_order": 3, "default_gain_db": -26 },
+    { "track_id": "A4", "track_type": "audio", "role": "sfx", "layer_order": 4, "default_gain_db": -20 }
+  ],
+  "assets": [
+    {
+      "asset_id": "A001",
+      "path": "media/replace-me.mp4",
+      "asset_type": "video",
+      "source_url": null,
+      "creator": null,
+      "license": null,
+      "attribution": null,
+      "rights_status": "needs_review",
+      "probe": { "duration_seconds": null, "width": null, "height": null, "fps": null, "has_audio": null },
+      "notes": "Replace this placeholder before editing."
+    },
+    {
+      "asset_id": "A002",
+      "path": "audio/narration-master.wav",
+      "asset_type": "audio",
+      "source_url": null,
+      "creator": null,
+      "license": null,
+      "attribution": null,
+      "rights_status": "needs_review",
+      "notes": "Approved narration master. Replace this placeholder."
+    },
+    {
+      "asset_id": "A003",
+      "path": "audio/music-bed.wav",
+      "asset_type": "audio",
+      "source_url": null,
+      "creator": null,
+      "license": null,
+      "attribution": null,
+      "rights_status": "needs_review",
+      "notes": "Replace this placeholder."
+    }
+  ],
+  "narration": {
+    "script_path": "script.md",
+    "voice_id": null,
+    "accent": "English - specify accent",
+    "pronunciation_notes_path": "pronunciation.md",
+    "approved": false,
+    "segments": [
+      {
+        "segment_id": "N001",
+        "asset_id": "A002",
+        "source_in_seconds": 0,
+        "source_out_seconds": 8,
+        "text": "Replace with exact spoken line."
+      }
+    ]
+  },
+  "intentional_gaps": [],
+  "scenes": [
+    {
+      "scene_id": "S001",
+      "act": "hook",
+      "start_frame": 0,
+      "duration_frames": 192,
+      "timing_status": "draft",
+      "purpose": "Establish machine scale and introduce the central question.",
+      "visual_direction": "Symmetrical hero wide, dark negative space, truthful scale cue.",
+      "narration": {
+        "text": "Replace with exact spoken line.",
+        "segment_ids": ["N001"]
+      },
+      "clips": [
+        {
+          "clip_id": "C001",
+          "asset_id": "A001",
+          "order": 1,
+          "track_id": "V1",
+          "source_in_seconds": 0,
+          "source_out_seconds": 8,
+          "timeline_start_frame": 0,
+          "duration_frames": 192,
+          "fit_mode": "cover",
+          "speed": 1.0,
+          "transition_in": "hard_cut",
+          "transition_out": "motivated_match_cut"
+        }
+      ],
+      "audio_clips": [
+        {
+          "clip_id": "AC001",
+          "asset_id": "A002",
+          "track_id": "A1",
+          "source_in_seconds": 0,
+          "source_out_seconds": 8,
+          "timeline_start_frame": 0,
+          "duration_frames": 192,
+          "gain_db": 0
+        },
+        {
+          "clip_id": "AC002",
+          "asset_id": "A003",
+          "track_id": "A2",
+          "source_in_seconds": 0,
+          "source_out_seconds": 8,
+          "timeline_start_frame": 0,
+          "duration_frames": 192,
+          "gain_db": -18,
+          "fade_in_frames": 24,
+          "fade_out_frames": 24
+        }
+      ],
+      "overlays": [
+        {
+          "overlay_id": "O001",
+          "text": "REPLACE TITLE",
+          "role": "title",
+          "track_id": "T1",
+          "start_offset_frames": 0,
+          "duration_frames": 96,
+          "style": {
+            "font_family": "Inter",
+            "weight": 600,
+            "size_px": 64,
+            "fill_hex": "#EEF1F3",
+            "shadow": { "color_hex": "#07090C", "blur_px": 8, "offset_x_px": 0, "offset_y_px": 2 }
+          },
+          "placement": { "x": 0.5, "y": 0.12, "anchor": "top_center", "alignment": "center", "safe_margin": 0.05 },
+          "opacity": 1.0,
+          "fade_in_frames": 12,
+          "fade_out_frames": 12
+        }
+      ],
+      "edit": {
+        "shot_type": "wide",
+        "movement": "slow_push_in",
+        "graphic": null,
+        "grade_notes": "Neutral silver, detailed blacks, amber localized to the core."
+      },
+      "verification": {
+        "claim_ids": [],
+        "visual_accuracy": "Confirm actual machine or label as illustrative.",
+        "rights_checked": false
+      }
+    }
+  ],
+  "unresolved_items": [
+    "Replace all example media and copy.",
+    "Verify source and license for every external asset.",
+    "Replace provisional pacing after full-video reference analysis.",
+    "Reconcile scene timing to approved narration audio."
+  ],
+  "deliverables": {
+    "editable_project_path": null,
+    "review_render_path": null,
+    "final_render_path": null,
+    "export_notes": null,
+    "kind": "plan"
+  }
+}
