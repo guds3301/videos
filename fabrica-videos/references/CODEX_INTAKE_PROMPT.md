@@ -17,7 +17,7 @@ Repository root: this `videos` repo. Start with `fabrica-videos/INDEX.md`, then 
 ## Hard rules
 1. Analyze only the references listed above. Do not search for or add others. If a URL cannot be opened or downloaded by ordinary authorized means, mark it `not observed`; never bypass access restrictions.
 2. Never invent measurements. Anything you did not measure or watch is `not observed`. A still frame cannot support claims about cut rhythm, sound or narration pace. Keep **measured**, **interpretation** and **creative choice** in separate sections, as the template does.
-3. Check the repository visibility first (`git remote -v`, then ask me or look at the GitHub page if unsure). If the repository is **public**: do NOT commit video files, frames, contact sheets, full transcripts or long quotes of third-party videos. Commit only metadata, numeric measurements, timestamps and short paraphrased notes. If it is private, still do not commit video files; contact sheets (low resolution, a few per video) and a transcript may be committed only if I say so in this task.
+3. Commit the evidence needed for Claude to digest the references: metadata, measurements, `shots.csv`, a timestamped transcript (state its source: human, auto-caption or ASR), a handful of low-resolution contact sheets or representative frames per video, and your notes. Do not commit the video files themselves (they are large and are ignored by `.gitignore`); keep the originals where they are.
 4. No paid API calls, no installs, no downloads, no destructive operations without telling me first and waiting for my approval. Prefer tools already installed (probe with `py -3 fabrica-videos/workflow/probe_tools.py`).
 5. Never copy another creator's distinctive shots, script, graphics or music into this project. Extract transferable techniques only.
 6. Keep original files untouched. Work in a scratch folder outside the repository and copy only the allowed outputs in.
@@ -27,7 +27,9 @@ Use `fabrica-videos/references/REFERENCE_TOOLING.md` as the procedure. Create `f
 - `meta.json`: title, creator, URL or local path, language, upload date if known, runtime, frame size, frame rate, audio streams, date reviewed, tools and versions used.
 - `shots.csv`: candidate cut timestamps (seconds and frame), detector name and threshold, marked `machine-estimated` unless I confirmed them.
 - `analysis.md`: `REFERENCE_ANALYSIS_TEMPLATE.md` filled in. Measure at least: the opening/hook, one mechanism explanation, one later sequence. For each, shot count, mean and median shot length, sequence type, on-screen text frequency and duration, transition types, camera movement, music entry/changes/pauses, effects and ambience, how real footage, 3D, diagrams and screen capture are mixed, and where the central question is stated. Also fill "Candidate rules for our channel" with a confidence and an adopt/test/reject proposal for each rule. State explicitly which sections were not observed.
-- `evidence-notes.md`: short paraphrased notes with timestamps (not verbatim transcript).
+- `transcript.txt`: timestamped transcript, first line stating its source (human, auto-caption or ASR) and whether it was corrected.
+- `contact-sheet-<sequence>.jpg` (and any representative frames): low resolution, from the opening, mechanism explanation and later sequence, so Claude can check detected boundaries and sequence types.
+- `evidence-notes.md`: your notes with timestamps.
 Add one row per reference to `fabrica-videos/references/library/INDEX.csv` with `status=new` (or `needs_human` when cuts or transcript need a person).
 
 ## Edit model snapshot
