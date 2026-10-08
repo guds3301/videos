@@ -29,3 +29,10 @@ Responds to the "Implementation requirements" in CLAUDE_REVIEW_RESPONSE.md.
 - Provide the LUT file, 3-5 full reference videos or authorized local copies, and real episode media.
 - Confirm whether CapCut Desktop, a CapCut MCP server or Computer Use is available on the editing machine.
 - Install `pip install jsonschema` where the validator will run.
+
+## Update: Remotion graphics (`graphics/`)
+- Three compositions (ChapterTitle, MeasureLine, ComponentDiagram) in the Cold Steel / Warm Core palette, rendered from JSON specs by `graphics/render_graphics.mjs` to ProRes 4444 `.mov` with alpha (or VP9 `.webm` with `--format webm`), plus `manifest.json`.
+- `graphics/graphics_assets.py` merges a manifest into `EDIT_PLAN.json` assets; a merged plan passed schema validation and FFprobe checks.
+- Tested here (Linux, Remotion 4.0.534, headless shell): all three render, alpha present, frame counts and 24 fps match, partial renders merge into the manifest, frames reviewed visually.
+- Not tested: import of the alpha `.mov` in CapCut, rendering on Windows, the Inter font.
+- Not built yet: the plan-to-CapCut-draft converter. It needs a real draft file from the user's CapCut version.

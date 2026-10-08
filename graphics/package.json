@@ -1,0 +1,18 @@
+{
+  "name": "fabrica-videos-graphics",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Remotion graphics (diagrams, labels, chapter titles) rendered as small clips for the CapCut timeline.",
+  "scripts": {
+    "studio": "remotion studio src/index.js",
+    "render": "node render_graphics.mjs"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.534",
+    "@remotion/cli": "4.0.534",
+    "@remotion/renderer": "4.0.534",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "remotion": "4.0.534"
+  }
+}

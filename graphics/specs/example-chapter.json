@@ -1,0 +1,7 @@
+{
+  "id": "chapter-01",
+  "composition": "ChapterTitle",
+  "duration_frames": 96,
+  "fps": 24,
+  "props": {"number": "01", "title": "The Core", "subtitle": "Where the heat begins"}
+}

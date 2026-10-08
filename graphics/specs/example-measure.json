@@ -1,0 +1,7 @@
+{
+  "id": "measure-rotor",
+  "composition": "MeasureLine",
+  "duration_frames": 96,
+  "fps": 24,
+  "props": {"label": "Rotor diameter", "value": "12.4", "unit": "m", "from": {"x": 0.3, "y": 0.72}, "to": {"x": 0.7, "y": 0.72}, "illustrative": true}
+}

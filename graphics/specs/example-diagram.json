@@ -1,0 +1,55 @@
+{
+  "id": "diagram-flow",
+  "composition": "ComponentDiagram",
+  "duration_frames": 168,
+  "fps": 24,
+  "props": {
+    "title": "Cooling loop",
+    "illustrative": true,
+    "nodes": [
+      {
+        "id": "core",
+        "label": "CORE",
+        "x": 0.2,
+        "y": 0.5,
+        "w": 0.15,
+        "h": 0.14,
+        "stage": 0,
+        "highlight": true
+      },
+      {
+        "id": "pump",
+        "label": "PUMP",
+        "x": 0.5,
+        "y": 0.5,
+        "w": 0.15,
+        "h": 0.14,
+        "stage": 1
+      },
+      {
+        "id": "exch",
+        "label": "HEAT EXCHANGER",
+        "x": 0.8,
+        "y": 0.5,
+        "w": 0.2,
+        "h": 0.14,
+        "stage": 2
+      }
+    ],
+    "links": [
+      {
+        "from": "core",
+        "to": "pump",
+        "label": "coolant",
+        "stage": 1,
+        "highlight": true
+      },
+      {
+        "from": "pump",
+        "to": "exch",
+        "label": "pressurized",
+        "stage": 2
+      }
+    ]
+  }
+}
