@@ -5,6 +5,7 @@ Claude Code should begin with the root CLAUDE.md, then fabrica-videos/CLAUDE.md 
 ## Folders
 - style/STYLE_GUIDE.md — channel look, typography, color, movement, sound, and narrative.
 - references/REFERENCE_ANALYSIS_TEMPLATE.md — one analysis worksheet per full-video reference.
+- references/CODEX_INTAKE_PROMPT.md — prompt that makes Codex package references and the edit model for Claude to digest; output goes in references/library/.
 - references/REFERENCE_TOOLING.md — local metadata, shot-detection, transcript, and human-review workflow.
 - workflow/PRODUCTION_WORKFLOW.md — the three production phases.
 - workflow/ASSEMBLY.md — adapter selection and the 60-90 second assembly smoke test.
